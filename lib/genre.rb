@@ -1,3 +1,5 @@
+require "pry"
+
 class Genre
   
   attr_accessor :name, :songs
@@ -25,6 +27,16 @@ class Genre
     genre = Genre.new(name)
     genre.save
     genre
+  end
+  
+  def artists
+    artist_collection = []
+    @songs.each do |song|
+      if !artist_collection.include?(song.artist)
+        artist_collection << song.artist
+      end
+    end
+    artist_collection
   end
 
 end

@@ -1,3 +1,5 @@
+require "pry"
+
 class Artist
   
   attr_accessor :name, :songs
@@ -30,8 +32,20 @@ class Artist
   def add_song(song)
     if !song.artist
       song.artist = self
-      @songs << song
     end
+    @songs << song if !@songs.include?(song)
+  end
+  
+  def genres
+    # binding.pry
+    genre_collection = []
+    @songs.each do |song| 
+      if !genre_collection.include?(song.genre)
+        genre_collection << song.genre
+      end
+    end
+    genre_collection
   end
 
 end
+
