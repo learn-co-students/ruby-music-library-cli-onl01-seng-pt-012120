@@ -50,6 +50,7 @@ class Song
   end
   
   def self.new_from_filename(filename)
+    binding.pry
     artist = filename.split(Regexp.union(["-", "."]))[0].strip
     title = filename.split(Regexp.union(["-", "."]))[1].strip
     genre = filename.split(Regexp.union(["-", "."]))[2].strip
