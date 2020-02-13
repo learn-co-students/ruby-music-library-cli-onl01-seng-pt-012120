@@ -2,6 +2,8 @@ require 'pry'
 
 class MusicLibraryController
 
+  # include MusicImporter
+  
   attr_accessor :path
 
   def initialize(path='./db/mp3s')
@@ -30,16 +32,40 @@ class MusicLibraryController
     end
   end
   
-  def list_songs
-    # CLI Methods #list_songs prints all songs in the music library in a numbered list (alphabetized by song name)
-    # binding.pry
+  def files
     full_list = Dir.glob("#{@path}/*mp3")
     trimmed_list = []
     full_list.each do |file|
       trimmed_list << file.split("/")[-1]
     end
-    binding.pry
+    # binding.pry
     trimmed_list
+  end
+  
+  def list_songs
+    files
+    outer_arr = []
+    files.each_with_index do |file, index|
+      inner_arr = []
+      # binding.pry
+      title = file.split(Regexp.union(["-", "."]))[1].strip
+      artist = file.split(Regexp.union(["-", "."]))[0].strip
+      genre = file.split(Regexp.union(["-", "."]))[2].strip
+      # puts "#{index + 1}. #{file.split('.mp3')}"
+      inner_arr << title
+      inner_arr << artist
+      inner_arr << genre
+      outer_arr << inner_arr
+    end
+    outer_arr.sort!
+    ordered_arr = []
+    outer_arr.each do |song_data|
+      song_data[0], song_data[1] = song_data[1], song_data[0]
+      song_data = song_data.join(" - ")
+      ordered_arr << song_data
+      binding.pry
+    end
+    
   end
 
 
