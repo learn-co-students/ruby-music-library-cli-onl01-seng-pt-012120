@@ -6,6 +6,7 @@ class MusicImporter
     @path = path
   end
   
+  
   def files
     full_list = Dir.glob("#{@path}/*mp3")
     trimmed_list = []
