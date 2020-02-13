@@ -53,7 +53,7 @@ class Song
     name = filename.split(Regexp.union(["-", "."]))[1].strip
     song = Song.new(name) if !Song.find_by_name(name)
     artist = Artist.find_or_create_by_name(filename.split(Regexp.union(["-", "."]))[0].strip)
-    genre = Genre.find_or_create_by_name(filename.split(Regexp.union(["-", "."]))[2].strip)
+    genre = Genre.find_or_create_by_name(filename.split(Regexp.union([" - ", "."]))[2].strip)
     song.artist = artist
     song.genre = genre
     song

@@ -2,7 +2,6 @@ require 'pry'
 
 class MusicLibraryController
 
-  # include MusicImporter
   
   attr_accessor :path
 
@@ -32,40 +31,40 @@ class MusicLibraryController
     end
   end
   
-  def files
-    full_list = Dir.glob("#{@path}/*mp3")
-    trimmed_list = []
-    full_list.each do |file|
-      trimmed_list << file.split("/")[-1]
+  def list_songs
+    song_arr = Song.all.sort_by(&:name)
+    song_arr.each_with_index do |song, index|
+      # binding.pry
+      puts "#{index + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
-    # binding.pry
-    trimmed_list
   end
   
-  def list_songs
-    files
-    outer_arr = []
-    files.each_with_index do |file, index|
-      inner_arr = []
-      # binding.pry
-      title = file.split(Regexp.union(["-", "."]))[1].strip
-      artist = file.split(Regexp.union(["-", "."]))[0].strip
-      genre = file.split(Regexp.union(["-", "."]))[2].strip
-      # puts "#{index + 1}. #{file.split('.mp3')}"
-      inner_arr << title
-      inner_arr << artist
-      inner_arr << genre
-      outer_arr << inner_arr
+  def list_artists
+    artist_arr = Artist.all.sort_by(&:name)
+    artist_arr.each_with_index do |artist, index|
+      puts "#{index + 1}. #{artist.name}"
     end
-    outer_arr.sort!
-    ordered_arr = []
-    outer_arr.each do |song_data|
-      song_data[0], song_data[1] = song_data[1], song_data[0]
-      song_data = song_data.join(" - ")
-      ordered_arr << song_data
-      binding.pry
+  end
+
+  def list_genres
+    genres_arr = Genre.all.sort_by(&:name)
+    genres_arr.each_with_index do |genre, index|
+      puts "#{index + 1}. #{genre.name}"
     end
-    
+  end
+  
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    input = gets.chomp
+    if Artist.find_by_name(input)
+      Artist.find_by_name(input).songs.sort_by(&:name).each_with_index do |song, index|
+        puts "#{index + 1}. #{song.name} - #{song.genre.name}"
+      end
+    end
+  end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
   end
 
 
