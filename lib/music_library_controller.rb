@@ -4,6 +4,7 @@ class MusicLibraryController
 
   
   attr_accessor :path
+  attr_reader :list_of_songs
 
   def initialize(path='./db/mp3s')
     @path = path
@@ -65,6 +66,24 @@ class MusicLibraryController
   
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
+    input = gets.chomp
+    if Genre.find_by_name(input)
+      Genre.find_by_name(input).songs.sort_by(&:name).each_with_index do |song, index|
+        puts "#{index + 1}. #{song.artist.name} - #{song.name}"
+      end
+    end
+  end
+  
+  def play_song
+    puts "Which song number would you like to play?"
+    input = gets.chomp.to_i
+    if input < Song.all.size && input > 0
+      index = input - 1
+      # binding.pry
+      song = Song.all.sort_by(&:name)[index].name
+      artist = Song.all.sort_by(&:name)[index].artist
+      puts "Playing #{song} by #{artist.name}"
+    end
   end
 
 
