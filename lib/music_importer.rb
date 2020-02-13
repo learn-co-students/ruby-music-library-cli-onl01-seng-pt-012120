@@ -1,3 +1,5 @@
+require 'pry'
+
 class MusicImporter
 
   attr_accessor :path
@@ -16,5 +18,9 @@ class MusicImporter
     trimmed_list
   end
   
+  def import
+    files
+    binding.pry
+  end
 
 end
