@@ -1,5 +1,7 @@
 class Artist 
-  attr_accessor :name, :songs
+  extend Concerns::Findable
+  
+  attr_accessor :name, :songs, :genres 
   
   
   @@all = []
@@ -39,6 +41,18 @@ class Artist
       songs << song 
     end 
   end 
+  
+  def genres
+    @new_array = []
+    @songs.each do |song|
+      if @new_array.include?(song.genre)
+        nil
+      else
+        @new_array << song.genre
+      end
+    end
+    @new_array
+  end
   
   
 end 
