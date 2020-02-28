@@ -1,3 +1,4 @@
+require 'pry'
 module Concerns::Findable
   
   module ClassMethods
@@ -12,7 +13,7 @@ module Concerns::Findable
 
 
     def find_or_create_by_name(name)
-      find_by_name(name) || self.create(name)
+      self.find_by_name(name) || self.create(name)
     end
     
   end
