@@ -15,7 +15,7 @@ class Artist
   end
   
   def save
-    @@all << self 
+    self.class.all << self 
   end 
   
   def songs
@@ -32,10 +32,9 @@ class Artist
     artist
   end 
   
-  def add_song
-    Song.all.select do |songs|
-      puts songs
-    end
+  def add_song(song)
+    song.artist = self unless song.artist
+    songs << song 
   end
   
   
