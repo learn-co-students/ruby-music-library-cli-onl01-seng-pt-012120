@@ -1,4 +1,8 @@
+require 'pry'
+
 class Artist
+  extend Concerns::Findable
+  
   attr_accessor :name 
   @@all = []
   
@@ -37,6 +41,7 @@ class Artist
   end 
   
   def genres
+    # binding.pry
     songs.collect {|song| song.genre}.uniq
   end 
   
