@@ -37,5 +37,10 @@ class Artist
     songs << song 
   end
   
-  
+  def add_song
+    Song.all.select do |songs|
+      binding.pry
+      songs.artist == self
+    end
+  end
 end
