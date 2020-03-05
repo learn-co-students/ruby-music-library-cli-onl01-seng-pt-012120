@@ -40,9 +40,17 @@ class Song
   end
   
   def self.find_by_name(name)
-      all.each.find(&:name)
-     # binding.pry
-    
+        Song.all.find(&:name)
+      binding.pry
   end
   
+  def find_or_create_by_name(name)
+    if songs.inlcude?(name)
+      all.find(&:name)
+    else
+      song = self.new(name)
+    song.save
+    song
+    end
+  end
 end
