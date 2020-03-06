@@ -40,13 +40,13 @@ class Song
   end
   
   def self.find_by_name(name)
-        Song.all.find { |songs| songs.name}
-      binding.pry
+      self.all.each {|song|   song.name == name}
+     # binding.pry
   end
   
   def find_or_create_by_name(name)
-    if songs.inlcude?(name)
-      all.find(&:name)
+    if songs.name == name
+     self.all.find(&:name)
     else
       song = self.new(name)
     song.save
