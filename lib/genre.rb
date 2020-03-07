@@ -22,12 +22,13 @@ class Genre
     @@all << self 
   end 
   
+  
   def self.destroy_all
     @@all.clear 
   end 
   
-  def self.create(name)
-    genre = self.new(name)
+  def self.create(genre)
+    genre = self.new(genre)
     genre.save
     genre
   end 

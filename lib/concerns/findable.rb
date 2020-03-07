@@ -3,7 +3,7 @@ require 'pry'
     
   def find_by_name(name)
     #binding.pry
-     self.all.collect do |x| x.name == name
+     self.all.select do |x| x.name == name
     name
    end
   end
