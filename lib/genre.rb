@@ -26,14 +26,14 @@ class Genre
     @@all.clear 
   end 
   
-  def self.create(genre)
+  def self.create(name)
     genre = self.new(name)
     genre.save
     genre
   end 
   
   def artists
-    songs.collect(&:artist).uniq
+    songs.collect(&:artist).uniq 
   end
     
 end
