@@ -33,8 +33,9 @@ class Genre
   end 
   
   def artists
-    songs.collect(&:artist).uniq 
-    binding.pry
+   songs.collect {|song| song.artist}.uniq
+   # songs.collect(&:artist).uniq 
+    #binding.pry
   end
     
 end
