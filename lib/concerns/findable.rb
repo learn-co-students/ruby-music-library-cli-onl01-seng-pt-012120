@@ -3,16 +3,12 @@ require 'pry'
     
   def find_by_name(name)
    # binding.pry
-    all.detect do |x| x.name == name
+    self.all.detect do |x| x.name == name
    end
   end
   
   
   def find_or_create_by_name(name)
-    find_by_name(name) || self.create(name)
-    name
+    self.find_by_name(name) || self.create(name)
+    end
   end
-  
-end
-
-#self.create(name)
