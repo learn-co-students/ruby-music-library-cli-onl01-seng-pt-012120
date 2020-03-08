@@ -11,6 +11,12 @@ class Song
     self.genre= genre if genre
   end
   
+  def self.new_from_filename(file)
+    file = self.new (file)
+    file.name.split("-")[1]
+    #binding.pry
+  end 
+  
   def self.all
     @@all
   end
