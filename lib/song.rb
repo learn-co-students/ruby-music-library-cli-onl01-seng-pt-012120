@@ -12,9 +12,13 @@ class Song
   end
   
   def self.new_from_filename(file)
-    file = self.new (file)
-    file.name.split("-")[1]
-    #binding.pry
+   # file = self.new (file)
+   artist, song, parse_genre =  file.split(" - ")
+   fixed_genre = parse_genre.gsub(".mp3", '')
+   artist = Artist.find_or_create_by_name(artist)
+   genre =  Genre.find_or_create_by_name(fixed_genre)
+   new(song, artist, genre)
+   #binding.pry
   end 
   
   def self.all
