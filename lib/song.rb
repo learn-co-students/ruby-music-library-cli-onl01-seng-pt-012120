@@ -21,6 +21,10 @@ class Song
    #binding.pry
   end 
   
+  def self.create_from_filename(file)
+    new_from_filename(file).save
+  end
+  
   def self.all
     @@all
   end
