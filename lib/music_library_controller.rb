@@ -21,10 +21,12 @@ class MusicLibraryController
     puts "To quit, type 'exit'." 
     exit = gets.chomp
     puts "What would you like to do?"
+    binding.pry
   end
   
   def call_loops
     
+    call
   end
 
 end
